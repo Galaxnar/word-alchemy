@@ -1,0 +1,48 @@
+{
+ "word": "malade",
+ "entries": [
+  {
+   "category": "Adjectif",
+   "synonyms": [
+    "détraqué",
+    "fou",
+    "déséquilibré",
+    "obsédé",
+    "dérangé",
+    "maboule",
+    "cinglé",
+    "timbré"
+   ]
+  },
+  {
+   "category": "Adjectif",
+   "synonyms": [
+    "souffrant",
+    "indisposé",
+    "abattu",
+    "fiévreux",
+    "valétudinaire",
+    "faible",
+    "souffreteux",
+    "fatigué",
+    "dolent",
+    "maladif",
+    "incommodé",
+    "affligé",
+    "défait",
+    "malingre",
+    "faible",
+    "chétif",
+    "patraque",
+    "frêle"
+   ]
+  },
+  {
+   "category": "Nom",
+   "synonyms": [
+    "patient",
+    "client"
+   ]
+  }
+ ]
+}

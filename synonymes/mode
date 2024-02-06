@@ -1,0 +1,50 @@
+{
+ "word": "mode",
+ "entries": [
+  {
+   "category": "Nom",
+   "synonyms": [
+    "actualité",
+    "événements",
+    "nouveauté",
+    "vogue",
+    "couture"
+   ]
+  },
+  {
+   "category": "Nom",
+   "synonyms": [
+    "façon",
+    "habitude",
+    "coutume",
+    "tradition",
+    "usage",
+    "règle",
+    "us",
+    "mœurs",
+    "manière",
+    "façon",
+    "style",
+    "conduite",
+    "art"
+   ]
+  },
+  {
+   "category": "Nom",
+   "synonyms": [
+    "méthode",
+    "logique",
+    "procédé",
+    "formule",
+    "théorie",
+    "système",
+    "recette",
+    "modalité",
+    "condition",
+    "type",
+    "guide",
+    "pratique"
+   ]
+  }
+ ]
+}
