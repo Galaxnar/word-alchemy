@@ -12,11 +12,12 @@
     <div class="container">
         <h1>Text Input Display</h1>
         <form action="/test" method="post">
-            <textarea id="textInput" name="textInput" rows="1" placeholder="DUMB TEST">chat</textarea>
+            <textarea id="textInput" name="textInput" rows="1" placeholder="DUMB TEST">{{ texte|default("") }}</textarea>
             <!-- <button onclick="displayText()">Display Text</button> -->
             <button type="submit">Test python</button>
         </form>
         <div id="displayArea"></div>
     </div>
+    <p class="time">Average time: {{ mot|default("") }}</p>
 </body>
 </html>

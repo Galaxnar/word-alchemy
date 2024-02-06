@@ -19,14 +19,14 @@ def test():
     motTrouve = False
     for file in files:
         if mot in file:
-            print("Le mot est bon")
+            reponse = "Le mot est bon"
             motTrouve=True
             break
     if motTrouve==False:
-        print("le mot est BAD")
+        reponse= "le mot est BAD"
         
 
-    return render_template("index.html")
+    return render_template("index.html",mot=reponse,texte=mot)
 
 
 
