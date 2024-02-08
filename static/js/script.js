@@ -38,3 +38,30 @@ function checkFileExistence() {
     xhr.send();
     
   }
+
+  function searchWord() {
+    var searchInput = document.getElementById("textInput").value;
+    var apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${searchInput}`;
+    //var apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/cat`;
+  
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        var meanings = data[0].meanings;
+        var synonymsList = document.getElementById('synonymsList');
+        synonymsList.innerHTML = ''; // Clear previous results
+        
+        meanings.forEach(meaning => {
+          meaning.definitions.forEach(definition => {
+            definition.synonyms.forEach(synonym => {
+              var listItem = document.createElement('li');
+              listItem.textContent = synonym;
+              synonymsList.appendChild(listItem);
+            });
+          });
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }
