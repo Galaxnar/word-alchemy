@@ -42,6 +42,9 @@ function checkFileExistence() {
   function searchWord() {
     var searchInput = document.getElementById("textInput").value;
     var apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${searchInput}`;
+    var p = document.createElement("p");
+          p.textContent = apiUrl;
+          displayArea.appendChild(p);
     //var apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/cat`;
   
     fetch(apiUrl)

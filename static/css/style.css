@@ -1,3 +1,9 @@
+body {
+    background-color: black; /* Set background color of the entire page to black */
+    color: white; /* Set text color to white */
+    font-family: 'Courier New', Courier, monospace; /* Set font to typewriter style */
+}
+
 .container {
     max-width: 600px;
     margin: 0 auto;
@@ -5,9 +11,27 @@
     text-align: center;
 }
 
-textarea {
-    width: 100%;
+h1 {
+    font-size: 36px; /* Set font size of h1 to 36px */
+}
+
+h2 {
+    font-size: 18px; /* Set font size of h1 to 36px */
+}
+
+
+textarea, #textInput {
+    width: calc(100% - 20px); /* Subtract padding from width */
     margin-bottom: 10px;
+    resize: none; /* Prevent resizing */
+    height: 36px; /* Set height to one line */
+    font-family: 'Courier New', Courier, monospace; /* Set font to typewriter style */
+    font-size: 24px; /* Set font size of text area */
+    background-color: black; /* Set background color to black */
+    color: white; /* Set text color to white */
+    border: 2px solid white; /* Add border to textarea */
+    text-align: center; /* Align text to the center */
+    padding-top: 10px; /* Add padding to center vertically */
 }
 
 button {
