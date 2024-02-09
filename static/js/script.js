@@ -18,6 +18,7 @@ function displayText() {
 
 function checkFileExistence() {
   var textInput = document.getElementById("textInput").value;
+  textInput=((textInput.toLowerCase()).trimStart()).trimEnd();
   //var filePath = 'https://raw.githubusercontent.com/Galaxnar/word-alchemy/main/synonymes/Afrique';
   var filePath = 'https://raw.githubusercontent.com/Galaxnar/word-alchemy/main/synonymes/'+ textInput;
 
