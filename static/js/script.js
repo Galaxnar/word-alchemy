@@ -17,27 +17,33 @@ function displayText() {
 }
 
 function checkFileExistence() {
-    var textInput = document.getElementById("textInput").value;
-    var filePath = 'https://raw.githubusercontent.com/Galaxnar/word-alchemy/main/synonymes/Afrique';
+  var textInput = document.getElementById("textInput").value;
+  //var filePath = 'https://raw.githubusercontent.com/Galaxnar/word-alchemy/main/synonymes/Afrique';
+  var filePath = 'https://raw.githubusercontent.com/Galaxnar/word-alchemy/main/synonymes/'+ textInput;
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', filePath, true);
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status == 200) {
-          console.log('File exists.');
-          console.log('File content:', xhr.responseText);
-          var p = document.createElement("p");
-          p.textContent = 'YES';
-          displayArea.appendChild(p);
-        } else {
-          console.log('File does not exist or cannot be accessed.');
-        }
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', filePath, true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status == 200) {
+        console.log('File exists.');
+        console.log('File content:', xhr.responseText);
+        var words = xhr.responseText.split('\n'); // Assuming each word is on a new line
+        var displayText = document.getElementById("tentative").textContent + ' -> ' + textInput ; // Concatenate current textInput with existing content
+        //displayArea.textContent = displayText;
+        //var p = document.createElement("p");
+        document.getElementById("tentative").textContent = displayText;
+        //p.textContent = displayText;
+        //displayArea.appendChild(p);
+      } else {
+        console.log('File does not exist or cannot be accessed.');
       }
-    };
-    xhr.send();
-    
-  }
+    }
+  };
+  xhr.send();   
+}
+
+
 
   function searchWord() {
     var searchInput = document.getElementById("textInput").value;

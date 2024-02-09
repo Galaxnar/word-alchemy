@@ -11,14 +11,15 @@
 <body>
     <div class="container">
         <h1>Word Alchemy!</h1>
-        <h2>The goal of this game is to progress from a starting word to a final word using only synonyms.</h21>
+        <h2 id="goal">The goal of this game is to progress from a starting word to a final word using only synonyms.</h21>
         <h2>Starting word: Banane / Banana</h2>
         <h2>Final word: Chat / Cat</h2>
-        <textarea id="textInput" name="textInput" rows="1" placeholder="DUMB TEST"></textarea>
+        <textarea id="textInput" name="textInput" rows="1" placeholder="Answer"></textarea>
         <button onclick="displayText()">Display Text</button>
         <button onclick="checkFileExistence()">FR</button>
         <button onclick="searchWord()">EN</button>
         <div id="displayArea"></div>
+        <p id="tentative">Chat</p>
         <div id="synonymsList"></div>
     </div>
 </body>

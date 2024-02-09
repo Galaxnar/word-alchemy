@@ -19,6 +19,11 @@ h2 {
     font-size: 18px; /* Set font size of h1 to 36px */
 }
 
+#goal {
+    color:gold;
+    border: 2px solid white;
+    padding: 10px;
+}
 
 textarea, #textInput {
     width: calc(100% - 20px); /* Subtract padding from width */
@@ -29,7 +34,7 @@ textarea, #textInput {
     font-size: 24px; /* Set font size of text area */
     background-color: black; /* Set background color to black */
     color: white; /* Set text color to white */
-    border: 2px solid white; /* Add border to textarea */
+    border: none; /* Add border to textarea */
     text-align: center; /* Align text to the center */
     padding-top: 10px; /* Add padding to center vertically */
 }
