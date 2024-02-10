@@ -11,15 +11,22 @@
 <body>
     <div class="container">
         <h1>Word Alchemy!</h1>
-        <h2 id="goal">The goal of this game is to progress from a starting word to a final word using only synonyms.</h21>
-        <h2>Starting word: Chat</h2>
-        <h2>Final word: Fauve</h2>
+        <!-- <h2 id="goal">The goal of this game is to progress from a starting word to a final word using only synonyms</h2> -->
+        <!-- <h2>Starting word: Chat</h2>
+        <h2>Final word: Fauve</h2> -->
+        <h2 id="goal">Le but du jeu est de progresser d'un mot de départ à un mot final en n'utilisant que des synonymes</h2>
+        <h2>Cliquer sur un niveau pour commencer à jouer</h2>
+        <div class="niveaux" id="niveaux-container"></div>
+        <div id="contenu"></div>
+        <div id="mots-container"></div>
+        <!-- <h2>Mot de départ: Chat</h2>
+        <h2>Mot final: Fauve</h2> -->
         <div class="center-container" id="winning-message"></div>
         <textarea id="textInput" name="textInput" rows="1" placeholder="Answer"></textarea>
         <!-- <button onclick="displayText()">Display Text</button> -->
         <button onclick="checkFileExistence()">Entrée</button>
         <!-- <button onclick="searchWord()">EN</button> -->
-        <p>Historique: </p>
+        <p>Parcours: </p>
         <p id="tentative">chat</p>
         <p>Synonyme(s) du dernier mot: </p>
         <div id="synonymsList"></div>

@@ -127,3 +127,22 @@ button:hover {
         opacity: 0;
     }
 }
+
+.niveaux {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.niveau {
+    width: 25px;
+    height: 25px;
+    margin: 10px;
+    background-color: black; /* Fond noir */
+    color: white; /* Texte blanc */
+    border: 1px solid white; /* Bordure blanche */
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}

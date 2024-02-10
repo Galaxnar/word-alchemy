@@ -136,10 +136,6 @@ function searchWord() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-
-});
-
 function changeColorConfetti() {
   const confettiElements = document.querySelectorAll(".confetti");
   confettiElements.forEach(function (confetti) {
@@ -154,4 +150,65 @@ function getRandomColor() {
     color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const niveauxContainer = document.getElementById('niveaux-container');
+  const listeDeNiveaux = ['1', '2', '3', '4', '5'];
+  // Générer les boîtes de niveaux en fonction de la liste de niveaux
+  listeDeNiveaux.forEach(niveau => {
+    const divNiveau = document.createElement('div');
+    divNiveau.classList.add('niveau');
+    divNiveau.textContent = niveau;
+    divNiveau.dataset.niveau = niveau;
+    divNiveau.addEventListener('click', function () {
+      const niveauSelectionne = this.dataset.niveau;
+      chargerDonnees(niveauSelectionne);
+    });
+    niveauxContainer.appendChild(divNiveau);
+  });
+
+
+});
+
+function chargerDonnees(niveau) {
+  console.log('Niveau :', niveau);
+  document.getElementById('contenu').innerHTML = 'Niveau : ' + niveau;
+  const motsContainer = document.getElementById('mots-container');
+  const motInitial = document.createElement('h2');
+  motInitial.classList.add("center-container");
+  motInitial.textContent = "Mot de départ: " + getMotInitial(niveau);
+  motsContainer.appendChild(motInitial);
+
+  const motFinal = document.createElement('h2');
+  motFinal.classList.add("center-container");
+  motFinal.textContent = "Mot final: " + getMotFinal(niveau);
+  motsContainer.appendChild(motFinal);
+}
+
+function getMotInitial(niveau) {
+  motInitial = ['Rire', 'Rire', 'Courir', 'Courir', 'Manger', 'Manger'];
+  return motInitial[niveau-1];
+}
+
+function getMotFinal(niveau) {
+  motFinal = ['Plaisanter', 'Sourire', 'Déplacer', 'Sprinter', 'Déguster', 'Savourer'];
+  return motFinal[niveau-1];
+}
+
+function getNbrEtapes(niveau) {
+  nbrEtapes = [3, 4, 3, 4, 3, 4];
+  return nbrEtapes[niveau-1];
+}
+
+function getSolution(niveau) {
+  solution = [
+    ['Rire', "S'amuser", 'Blaguer', 'Plaisanter'],
+    ['Rire', 'Sourire', 'Se réjouir', 'Plaisanter'],
+    ['Courir', 'Se déplacer', 'Se mouvoir', 'Déplacer'],
+    ['Courir', 'Trotter', 'Foncer', 'Sprinter'],
+    ['Manger', 'Se nourrir', 'Dîner', 'Déguster'],
+    ['Manger', 'Prendre un repas', 'Bouffer', 'Savourer']
+  ];
+  return solution[niveau-1];
 }
