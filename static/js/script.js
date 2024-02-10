@@ -46,30 +46,13 @@ function checkFileExistence() {
             synonymsList.appendChild(listItem);
           });
 
-
-          if (textInput == "fauve") { //si la bonne reponse
+          niveauSelectionne = parseInt((document.getElementById("contenu").textContent).replace(/\D/g, ''));
+          if (textInput == getMotFinal(niveauSelectionne).toLowerCase()) { //si la bonne reponse
             //var centerContainer = document.createElement("div");
             //centerContainer.classList.add("center-container");
 
-            var heading = document.createElement("h1");
-            heading.textContent = "Vous avez gagné!";
-
-            var confettiContainer = document.createElement("div");
-            confettiContainer.classList.add("confetti-container");
-
-            for (var i = 0; i < 8; i++) {
-              var confetti = document.createElement("div");
-              confetti.classList.add("confetti");
-              confettiContainer.appendChild(confetti);
-            }
-
-            centerContainer = document.getElementById("winning-message");
-            centerContainer.appendChild(heading);
-            centerContainer.appendChild(confettiContainer);
-
-            //document.body.appendChild(centerContainer);
-
-            changeColorConfetti();
+            const winningMessage = document.getElementById('winning-message');
+            winningMessage.style.display = 'block';
           }
         }
 
@@ -154,7 +137,7 @@ function getRandomColor() {
 
 document.addEventListener('DOMContentLoaded', function () {
   const niveauxContainer = document.getElementById('niveaux-container');
-  const listeDeNiveaux = ['1', '2', '3', '4', '5'];
+  const listeDeNiveaux = ['1', '2', '3', '4'];
   // Générer les boîtes de niveaux en fonction de la liste de niveaux
   listeDeNiveaux.forEach(niveau => {
     const divNiveau = document.createElement('div');
@@ -168,47 +151,109 @@ document.addEventListener('DOMContentLoaded', function () {
     niveauxContainer.appendChild(divNiveau);
   });
 
+  var heading = document.createElement("h1");
+  heading.textContent = "Vous avez gagné!";
 
+  var confettiContainer = document.createElement("div");
+  confettiContainer.classList.add("confetti-container");
+
+  for (var i = 0; i < 8; i++) {
+    var confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confettiContainer.appendChild(confetti);
+  }
+
+  centerContainer = document.getElementById("winning-message");
+  centerContainer.appendChild(heading);
+  centerContainer.appendChild(confettiContainer);
+
+  //document.body.appendChild(centerContainer);
+
+  changeColorConfetti();
 });
 
 function chargerDonnees(niveau) {
   console.log('Niveau :', niveau);
   document.getElementById('contenu').innerHTML = 'Niveau : ' + niveau;
-  const motsContainer = document.getElementById('mots-container');
-  const motInitial = document.createElement('h2');
-  motInitial.classList.add("center-container");
-  motInitial.textContent = "Mot de départ: " + getMotInitial(niveau);
-  motsContainer.appendChild(motInitial);
 
-  const motFinal = document.createElement('h2');
-  motFinal.classList.add("center-container");
+  const motDeDepart = document.getElementById('motDeDepart');
+  motDeDepart.textContent = "Mot de départ: " + getMotInitial(niveau);
+
+  const motFinal = document.getElementById('motFinal');
   motFinal.textContent = "Mot final: " + getMotFinal(niveau);
-  motsContainer.appendChild(motFinal);
+
+  const parcours = document.getElementById('parcours');
+  parcours.textContent = "Parcours:";
+
+  const tentative = document.getElementById('tentative');
+  tentative.textContent = getMotInitial(niveau);
+
+  const synonymesInfo = document.getElementById('SynonymesInfo');
+  synonymesInfo.textContent = "Synonyme(s) du dernier mot:";
+
+  const elementsPourJouer = document.getElementById('elementsPourJouer');
+  elementsPourJouer.style.display = 'block';
+
+  const winningMessage = document.getElementById('winning-message');
+  winningMessage.style.display = 'none';
+
+  const textInput = document.getElementById('textInput');
+  textInput.value = "";
+
+
+  const synonymsList = document.getElementById('synonymsList');
+  //synonymsList.textContent = "";
+
+  var motAChercher = ((getMotInitial(niveau).toLowerCase()).trimStart()).trimEnd();
+  //var filePath = 'https://raw.githubusercontent.com/Galaxnar/word-alchemy/main/synonymes/Afrique';
+  var filePath = 'https://raw.githubusercontent.com/Galaxnar/word-alchemy/main/synonymes/' + motAChercher;
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', filePath, true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status == 200) {
+        console.log('File exists.');
+          var data = JSON.parse(xhr.responseText);
+          var synonyms = data.entries[0].synonyms;
+
+          synonymsList.innerHTML = ''; // Clear previous results
+          synonyms.forEach(synonym => {
+            var listItem = document.createElement('li');
+            listItem.textContent = synonym;
+            synonymsList.appendChild(listItem);
+          });
+        
+
+      } else {
+        console.log('File does not exist or cannot be accessed.');
+      }
+    }
+  };
+  xhr.send();
 }
 
-function getMotInitial(niveau) {
-  motInitial = ['Rire', 'Rire', 'Courir', 'Courir', 'Manger', 'Manger'];
-  return motInitial[niveau-1];
-}
+  function getMotInitial(niveau) {
+    motInitial = ['Chat', 'Rire','Bateau','Rue'];
+    return motInitial[niveau - 1];
+  }
 
-function getMotFinal(niveau) {
-  motFinal = ['Plaisanter', 'Sourire', 'Déplacer', 'Sprinter', 'Déguster', 'Savourer'];
-  return motFinal[niveau-1];
-}
+  function getMotFinal(niveau) {
+    motFinal = ['Carnassier', 'Soumettre','Artère','Gorge'];
+    return motFinal[niveau - 1];
+  }
 
-function getNbrEtapes(niveau) {
-  nbrEtapes = [3, 4, 3, 4, 3, 4];
-  return nbrEtapes[niveau-1];
-}
+  function getNbrEtapes(niveau) {
+    nbrEtapes = [4, 4, 4, 3];
+    return nbrEtapes[niveau - 1];
+  }
 
-function getSolution(niveau) {
-  solution = [
-    ['Rire', "S'amuser", 'Blaguer', 'Plaisanter'],
-    ['Rire', 'Sourire', 'Se réjouir', 'Plaisanter'],
-    ['Courir', 'Se déplacer', 'Se mouvoir', 'Déplacer'],
-    ['Courir', 'Trotter', 'Foncer', 'Sprinter'],
-    ['Manger', 'Se nourrir', 'Dîner', 'Déguster'],
-    ['Manger', 'Prendre un repas', 'Bouffer', 'Savourer']
-  ];
-  return solution[niveau-1];
-}
+  function getSolution(niveau) {
+    solution = [
+      ['Chat', "Félin", 'Lion', 'Carnassier'],
+      ['Rire', 'Tordre', 'Plier', 'Soumettre'],
+      ['Bateau', 'Navire', 'Vaisseau', 'Artère'],
+      ['Rue', 'Passage', 'Gorge']
+    ];
+    return solution[niveau - 1];
+  }

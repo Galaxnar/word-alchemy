@@ -18,18 +18,29 @@
         <h2>Cliquer sur un niveau pour commencer à jouer</h2>
         <div class="niveaux" id="niveaux-container"></div>
         <div id="contenu"></div>
-        <div id="mots-container"></div>
+        <div id="mots-container">
+            <h2 id="motDeDepart"></h2>
+            <h2 id="motFinal"></h2>
+        </div>
         <!-- <h2>Mot de départ: Chat</h2>
         <h2>Mot final: Fauve</h2> -->
-        <div class="center-container" id="winning-message"></div>
-        <textarea id="textInput" name="textInput" rows="1" placeholder="Answer"></textarea>
+        <div class="center-container" id="winning-message" style="display: none;"></div>
+        <div id="elementsPourJouer" style="display: none;">
+            <textarea id="textInput" name="textInput" rows="1" placeholder="Answer"></textarea>
+            <button onclick="checkFileExistence()">Entrée</button>
+        </div>
+        
         <!-- <button onclick="displayText()">Display Text</button> -->
-        <button onclick="checkFileExistence()">Entrée</button>
+        
         <!-- <button onclick="searchWord()">EN</button> -->
-        <p>Parcours: </p>
-        <p id="tentative">chat</p>
-        <p>Synonyme(s) du dernier mot: </p>
-        <div id="synonymsList"></div>
+        <div id="Historique">
+            <p id="parcours"></p>
+            <p id="tentative"></p>
+        </div>
+        <div id="Synonymes">
+            <p id="SynonymesInfo"></p>
+            <div id="synonymsList"></div>
+        </div>
     </div>
 </body>
 </html>
