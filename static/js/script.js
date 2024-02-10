@@ -46,6 +46,9 @@ function checkFileExistence() {
             synonymsList.appendChild(listItem);
           });
 
+          const synonymesInfo = document.getElementById('SynonymesInfo');
+          synonymesInfo.textContent = "Synonyme(s) du mot: " + textInput ;
+
           niveauSelectionne = parseInt((document.getElementById("contenu").textContent).replace(/\D/g, ''));
           if (textInput == getMotFinal(niveauSelectionne).toLowerCase()) { //si la bonne reponse
             //var centerContainer = document.createElement("div");
@@ -72,7 +75,6 @@ function checkFileExistence() {
 }
 
 function messageErreur(){
-  console.log('Erreur pas un synonyme');
   const erreurMessage = document.getElementById('erreur-message');
   erreurMessage.style.display = 'none';
 
@@ -93,7 +95,7 @@ function checkIfSynonyme(motPrecedent, nouveauMot_xhr) {
 }
 
 function isTextInSynonyms(text, synonyms) {
-
+  console.log(synonyms);
   for (var i = 0; i < synonyms.length; i++) {
     if (synonyms[i] === text.toLowerCase()) {
       return true;
@@ -203,7 +205,7 @@ function chargerDonnees(niveau) {
   tentative.textContent = getMotInitial(niveau);
 
   const synonymesInfo = document.getElementById('SynonymesInfo');
-  synonymesInfo.textContent = "Synonyme(s) du dernier mot:";
+  synonymesInfo.textContent = "Synonyme(s) du mot: " + getMotInitial(niveau) ;
 
   const elementsPourJouer = document.getElementById('elementsPourJouer');
   elementsPourJouer.style.display = 'block';
@@ -248,12 +250,12 @@ function chargerDonnees(niveau) {
 }
 
   function getMotInitial(niveau) {
-    motInitial = ['Chat', 'Rire','Bateau','Rue'];
+    motInitial = [ 'Rire','Bateau','Rue','Chat'];
     return motInitial[niveau - 1];
   }
 
   function getMotFinal(niveau) {
-    motFinal = ['Carnassier', 'Soumettre','Artère','Gorge'];
+    motFinal = ['Soumettre','Artère','Gorge', 'Carnassier' ];
     return motFinal[niveau - 1];
   }
 
@@ -264,10 +266,10 @@ function chargerDonnees(niveau) {
 
   function getSolution(niveau) {
     solution = [
-      ['Chat', "Félin", 'Lion', 'Carnassier'],
       ['Rire', 'Tordre', 'Plier', 'Soumettre'],
       ['Bateau', 'Navire', 'Vaisseau', 'Artère'],
-      ['Rue', 'Passage', 'Gorge']
+      ['Rue', 'Passage', 'Gorge'],
+      ['Chat', "Félin", 'Lion', 'Carnassier']
     ];
     return solution[niveau - 1];
   }
