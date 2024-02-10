@@ -38,6 +38,8 @@ function checkFileExistence() {
           var data = JSON.parse(xhr.responseText);
           var synonyms = data.entries[0].synonyms;
 
+          var synonymsList = document.getElementById('synonymsList');
+          synonymsList.innerHTML = ''; // Clear previous results
           synonyms.forEach(synonym => {
             var listItem = document.createElement('li');
             listItem.textContent = synonym;
