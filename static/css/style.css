@@ -54,3 +54,76 @@ button:hover {
 #displayArea {
     margin-top: 20px;
 }
+
+.center-container {
+    text-align: center;
+}
+
+.confetti-container {
+    position: relative;
+    display: inline-block; /* Permet au conteneur de s'adapter à la taille du texte */
+}
+
+.confetti {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    background-color: #f00; /* couleur des confettis */
+    border-radius: 0;
+    animation: confetti-fall 3s ease-in-out infinite;
+}
+
+.confetti:nth-child(1) {
+    top: 0;
+    left: 100px;
+}
+
+.confetti:nth-child(2) {
+    top: 0;
+    right: 100px;
+}
+
+.confetti:nth-child(3) {
+    bottom: 0;
+    left: 100px;
+}
+
+.confetti:nth-child(4) {
+    bottom: 0;
+    right: 100px;
+}
+
+.confetti:nth-child(5) {
+    top: 0;
+    left: 0;
+}
+
+.confetti:nth-child(6) {
+    top: 0;
+    right: 0;
+}
+
+.confetti:nth-child(7) {
+    bottom: 0;
+    left: 0;
+}
+
+.confetti:nth-child(8) {
+    bottom: 0;
+    right: 0;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) rotate(720deg);
+        opacity: 0;
+    }
+}
