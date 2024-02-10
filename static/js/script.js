@@ -55,13 +55,27 @@ function checkFileExistence() {
             winningMessage.style.display = 'block';
           }
         }
-
+        var textAera = document.getElementById("textInput");
+        textAera.value="";
       } else {
         console.log('File does not exist or cannot be accessed.');
+
+        const erreurMessage = document.getElementById('erreur-message');
+        erreurMessage.style.display = 'block';
+        var textAera = document.getElementById("textInput");
+        textAera.value="";
+        setTimeout(messageErreur,1000)
       }
     }
   };
   xhr.send();
+}
+
+function messageErreur(){
+  console.log('Erreur pas un synonyme');
+  const erreurMessage = document.getElementById('erreur-message');
+  erreurMessage.style.display = 'none';
+
 }
 
 
