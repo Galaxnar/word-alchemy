@@ -208,7 +208,8 @@ function chargerDonnees(niveau) {
   synonymesInfo.textContent = "Synonyme(s) du mot: " + getMotInitial(niveau) ;
 
   const elementsPourJouer = document.getElementById('elementsPourJouer');
-  elementsPourJouer.style.display = 'block';
+  //elementsPourJouer.style.display = 'block';
+  //no need with links
 
   const winningMessage = document.getElementById('winning-message');
   winningMessage.style.display = 'none';
@@ -236,7 +237,13 @@ function chargerDonnees(niveau) {
           synonymsList.innerHTML = ''; // Clear previous results
           synonyms.forEach(synonym => {
             var listItem = document.createElement('li');
-            listItem.textContent = synonym;
+            var buttonListItem = document.createElement('button');
+            buttonListItem.textContent=synonym;
+            buttonListItem.classList.add("link");
+            buttonListItem.setAttribute('id', synonym);
+            buttonListItem.setAttribute('onclick', "getButtonValue(this)");
+            listItem.appendChild(buttonListItem);
+            //listItem.textContent = synonym;
             synonymsList.appendChild(listItem);
           });
         
@@ -272,4 +279,70 @@ function chargerDonnees(niveau) {
       ['Chat', "Félin", 'Lion', 'Carnassier']
     ];
     return solution[niveau - 1];
+  }
+
+  function getButtonValue(button) {
+    var buttonValue = button.innerText;
+    console.log("Button value: " + buttonValue)
+    var textInput = buttonValue;
+  textInput = ((textInput.toLowerCase()).trimStart()).trimEnd();
+  //var filePath = 'https://raw.githubusercontent.com/Galaxnar/word-alchemy/main/synonymes/Afrique';
+  var filePath = 'https://raw.githubusercontent.com/Galaxnar/word-alchemy/main/synonymes/' + textInput;
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', filePath, true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status == 200) {
+        console.log('File exists.');
+        //console.log('File content:', xhr.responseText);
+        //var words = xhr.responseText.split('\n'); // Assuming each word is on a new line
+        //document.getElementById("tentative").textContent = checkIfSynonyme(getLastWord(document.getElementById("tentative").textContent), xhr);
+        if (checkIfSynonyme(getLastWord(document.getElementById("tentative").textContent), xhr) == true) {
+          var displayText = document.getElementById("tentative").textContent + ' -> ' + textInput; // Concatenate current textInput with existing content
+          document.getElementById("tentative").textContent = displayText;
+
+          var data = JSON.parse(xhr.responseText);
+          var synonyms = data.entries[0].synonyms;
+
+          var synonymsList = document.getElementById('synonymsList');
+          synonymsList.innerHTML = ''; // Clear previous results
+          synonyms.forEach(synonym => {
+            var listItem = document.createElement('li');
+            var buttonListItem = document.createElement('button');
+            buttonListItem.textContent=synonym;
+            buttonListItem.classList.add("link");
+            buttonListItem.setAttribute('id', synonym);
+            buttonListItem.setAttribute('onclick', "getButtonValue(this)");
+            listItem.appendChild(buttonListItem);
+            //listItem.textContent = synonym;
+            synonymsList.appendChild(listItem);
+          });
+
+          const synonymesInfo = document.getElementById('SynonymesInfo');
+          synonymesInfo.textContent = "Synonyme(s) du mot: " + textInput ;
+
+          niveauSelectionne = parseInt((document.getElementById("contenu").textContent).replace(/\D/g, ''));
+          if (textInput == getMotFinal(niveauSelectionne).toLowerCase()) { //si la bonne reponse
+            //var centerContainer = document.createElement("div");
+            //centerContainer.classList.add("center-container");
+
+            const winningMessage = document.getElementById('winning-message');
+            winningMessage.style.display = 'block';
+          }
+        }
+        var textAera = document.getElementById("textInput");
+        textAera.value="";
+      } else {
+        console.log('File does not exist or cannot be accessed.');
+
+        const erreurMessage = document.getElementById('erreur-message');
+        erreurMessage.style.display = 'block';
+        var textAera = document.getElementById("textInput");
+        textAera.value="";
+        setTimeout(messageErreur,1000)
+      }
+    }
+  };
+  xhr.send();
   }
