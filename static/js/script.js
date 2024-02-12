@@ -334,6 +334,9 @@ function chargerDonnees(niveau) {
 
             const winningMessage = document.getElementById('winning-message');
             winningMessage.style.display = 'block';
+
+            var synonymsList = document.getElementById('synonymsList');
+            synonymsList.innerHTML = ''; // Clear previous results
           }
         }
         var textAera = document.getElementById("textInput");
