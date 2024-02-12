@@ -233,7 +233,7 @@ function chargerDonnees(niveau) {
         console.log('File exists.');
           var data = JSON.parse(xhr.responseText);
           var synonyms = data.entries[0].synonyms;
-
+          synonyms.sort();
           synonymsList.innerHTML = ''; // Clear previous results
           synonyms.forEach(synonym => {
             var listItem = document.createElement('li');
@@ -304,7 +304,8 @@ function chargerDonnees(niveau) {
 
           var data = JSON.parse(xhr.responseText);
           var synonyms = data.entries[0].synonyms;
-
+          synonyms.sort();
+          
           var synonymsList = document.getElementById('synonymsList');
           synonymsList.innerHTML = ''; // Clear previous results
           synonyms.forEach(synonym => {
