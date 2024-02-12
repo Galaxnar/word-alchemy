@@ -153,7 +153,7 @@ function getRandomColor() {
 
 document.addEventListener('DOMContentLoaded', function () {
   const niveauxContainer = document.getElementById('niveaux-container');
-  const listeDeNiveaux = ['1', '2', '3', '4'];
+  const listeDeNiveaux = ['1', '2', '3', '4', '5', '6', '7', '8'];
   // Générer les boîtes de niveaux en fonction de la liste de niveaux
   listeDeNiveaux.forEach(niveau => {
     const divNiveau = document.createElement('div');
@@ -257,17 +257,17 @@ function chargerDonnees(niveau) {
 }
 
   function getMotInitial(niveau) {
-    motInitial = [ 'Rire','Bateau','Rue','Chat'];
+    motInitial = [ 'Rire','Bateau', 'Corse','Rue','Chat', 'Académie', 'Parent','Ponctualité'];
     return motInitial[niveau - 1];
   }
 
   function getMotFinal(niveau) {
-    motFinal = ['Soumettre','Artère','Gorge', 'Carnassier' ];
+    motFinal = ['Soumettre','Artère','Emprise','Gorge', 'Carnassier','Commandement','Identique','Voiture'];
     return motFinal[niveau - 1];
   }
 
   function getNbrEtapes(niveau) {
-    nbrEtapes = [4, 4, 4, 3];
+    nbrEtapes = [4, 4, 4, 3, 4, 4, 4, 4];
     return nbrEtapes[niveau - 1];
   }
 
@@ -275,8 +275,12 @@ function chargerDonnees(niveau) {
     solution = [
       ['Rire', 'Tordre', 'Plier', 'Soumettre'],
       ['Bateau', 'Navire', 'Vaisseau', 'Artère'],
+      ['Corse', 'Augmente', 'Ascendant', 'Emprise'],
       ['Rue', 'Passage', 'Gorge'],
-      ['Chat', "Félin", 'Lion', 'Carnassier']
+      ['Chat', "Félin", 'Lion', 'Carnassier'],
+      ['Académie', 'Faculté', 'Pouvoir', 'Commandement'],
+      ['Parent','Proche','Homologue', 'Identique'],
+      ['Ponctualité','Assiduité', 'Diligence', 'Voiture']
     ];
     return solution[niveau - 1];
   }
@@ -305,7 +309,7 @@ function chargerDonnees(niveau) {
           var data = JSON.parse(xhr.responseText);
           var synonyms = data.entries[0].synonyms;
           synonyms.sort();
-          
+
           var synonymsList = document.getElementById('synonymsList');
           synonymsList.innerHTML = ''; // Clear previous results
           synonyms.forEach(synonym => {
